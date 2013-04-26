@@ -6,12 +6,12 @@
          		<span class="icon-bar"></span>
          		<span class="icon-bar"></span>
        		</a>
-       		<a class="brand" href="javascript:">Greenfield</a>
+       		<a class="brand" href="javascript:">Contego</a>
        		<div class="nav-collapse collapse navbar-inverse-collapse pull-right">
          		<ul class="nav">
-           			<li class="${homeActive}"><a href="/greenfield/">Home</a></li>
-           			<li class="${listPropertyActive}"><a href="/greenfield/app/user/list?offset=0&max=10">List Users</a></li>
-           			<li class="${addPropertyActive}"><a href= "/greenfield/app/user/create">Add User</a></li>
+           			<li class="${homeActive}"><a href="/contego/">Home</a></li>
+           			<li class="${listPropertyActive}"><a href="/contego/app/user/list?offset=0&max=10">List Users</a></li>
+           			<li class="${addPropertyActive}"><a href= "/contego/app/user/create">Add User</a></li>
          		</ul>
        		</div>
     	</div>

@@ -5,24 +5,48 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
          					 http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" >
 
+	<!-- explicitly setting context files -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/applicationContext.xml,
+			/WEB-INF/contego-servlet.xml,
+			/WEB-INF/spring-security.xml
+		</param-value>
+	</context-param>
+
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
   	<servlet>
-  		<servlet-name>greenfield</servlet-name>
+  		<servlet-name>contego</servlet-name>
     	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     	<load-on-startup>1</load-on-startup>
   	</servlet>
 
   	<servlet-mapping>
-    	<servlet-name>greenfield</servlet-name>
+    	<servlet-name>contego</servlet-name>
     	<url-pattern>/app/*</url-pattern>
   	</servlet-mapping>
 
   	<welcome-file-list>
     	<welcome-file>index.jsp</welcome-file>
   	</welcome-file-list>
+	
+	
+	<!-- Spring Security -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class> org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+ 
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+		
 
 	<filter>
 	    <filter-name>sitemesh</filter-name>
@@ -33,16 +57,5 @@
 	  	<filter-name>sitemesh</filter-name>
 	  	<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	
-	<filter>
-	    <filter-name>ShiroFilter</filter-name>
-	    <filter-class>org.aigua.filters.ShiroFilter</filter-class>
-	</filter>
-	<filter-mapping>
-	    <filter-name>ShiroFilter</filter-name>
-	    <url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
-		
+			
 </web-app>

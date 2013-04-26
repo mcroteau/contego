@@ -1,17 +1,17 @@
 <title>${title}</title>
-<link href="/greenfield/js/lib/bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/contego/js/lib/bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
 
-<script type="text/javascript" src="/greenfield/js/lib/jquery/jquery.js"></script>
-<script type="text/javascript" src="/greenfield/js/lib/mustache/mustache.js"></script>
-<script type="text/javascript" src="/greenfield/js/lib/jstree/jstree.min.js"></script>
-<script type="text/javascript" src="/greenfield/js/lib/json2.js"></script>
+<script type="text/javascript" src="/contego/js/lib/jquery/jquery.js"></script>
+<script type="text/javascript" src="/contego/js/lib/mustache/mustache.js"></script>
+<script type="text/javascript" src="/contego/js/lib/jstree/jstree.min.js"></script>
+<script type="text/javascript" src="/contego/js/lib/json2.js"></script>
 
 <script type="text/javascript">
 
 Types = {};
 TypesTransport = (function(){
 	
-	var baseUrl = '/greenfield/app/user/list';
+	var baseUrl = '/contego/app/user/list';
 	
 	function get(max, offset){
 		return $.ajax({

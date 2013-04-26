@@ -30,9 +30,6 @@ import java.util.ArrayList;
 import org.aigua.domain.User;
 import org.aigua.dao.UserDao;
 
-import org.apache.shiro.subject.Subject;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.AuthorizationException;
 
 
 @Controller
@@ -46,14 +43,6 @@ public class UserController {
 
 	@RequestMapping(value="/create", method=RequestMethod.GET)
 	public String create(ModelMap model, HttpServletRequest request){
-		List<String> roles = new ArrayList<String>();
-		roles.add("admin");
-		
-		if (!SecurityUtils.getSubject().hasRole("admin")){
-	    	System.out.println("\n\nOperation not permitted");
-	      	throw new AuthorizationException("No Permission"); 
-	    }
-	
 		model.addAttribute("title", "Create New User");
 		model.addAttribute("addUserActive", "active");
 		return "user/create";

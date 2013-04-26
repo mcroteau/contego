@@ -34,19 +34,12 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.AuthenticationException;
 
-
 import org.springframework.ui.ModelMap;
+
 
 @Controller
 @RequestMapping("/auth")
 public class AuthController{
-	
-	private Gson gson;
-	
-	public AuthController(){
-		System.out.println("\n\nInitializing AuthController\n\n");
-		gson = new Gson();
-	}
 	
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
@@ -56,80 +49,25 @@ public class AuthController{
 	}	
 	
 	
-	
-	@RequestMapping(value="/authenticate", method=RequestMethod.POST)
-	public String authenticate(ModelMap model, @RequestBody String credsString){
-		
-		System.out.println("AUTHENTICATE ");
-		System.out.println(credsString);
-		
-		model.addAttribute("creds", credsString);
-		
-		Map<String, String> creds = parse(credsString);
-		model.addAttribute("username", creds.get("username"));
-		System.out.println(creds);
-		
-		
-		try{
-		
-			String username = "root";
-			String password = "secret";
-			
-			UsernamePasswordToken token = new UsernamePasswordToken( creds.get("username"), creds.get("password") );
-			token.setRememberMe(true);
-			
-			//With most of Shiro, you'll always want to make sure you're working with the currently executing user, referred to as the subject
-			Subject currentUser = SecurityUtils.getSubject();
-			
-			//Authenticate the subject by passing
-			//the user name and password token
-			//into the login method
-			currentUser.login(token);
-			
-			System.out.println("\n\n << AUTHENTICATED >> \n\n");
-			
-			model.addAttribute("currentUser", currentUser.getPrincipal());
-
-			
-		} catch ( UnknownAccountException uae ) { 
-			uae.printStackTrace();
-		} catch ( IncorrectCredentialsException ice ) {
-			ice.printStackTrace();
-		} catch ( LockedAccountException lae ) { 
-			lae.printStackTrace();
-		} catch ( ExcessiveAttemptsException eae ) { 
-			eae.printStackTrace();
-		} catch ( AuthenticationException ae ) {
-			ae.printStackTrace();
-		}
-
-		return "auth/success";
-	}	
-	
-	
-	
-	@RequestMapping(value="/logout", method=RequestMethod.POST)
-	public @ResponseBody String logout(HttpServletRequest request){
-		
-		Subject currentUser = SecurityUtils.getSubject();
-
-		//Authenticate the subject by passing
-		//the user name and password token
-		//into the login method
-		currentUser.logout();		
-		
-		return "logged out";
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(ModelMap model, HttpServletRequest request){
+		model.addAttribute("title", "Successfully Logged Out");
+		return "auth/logout";
 	}
-	
-	private Map<String, String> parse(String text){
-		Map<String, String> map = new HashMap<String, String>();
-		for(String keyValue : text.split(" *& *")) {
-		   String[] pairs = keyValue.split(" *= *", 2);
-		   map.put(pairs[0], pairs.length == 1 ? "" : pairs[1]);
-		}
-		return map;
+
+	@RequestMapping(value="/failed", method=RequestMethod.GET)
+	public String failed(ModelMap model, HttpServletRequest request){
+		model.addAttribute("title", "Login");
+		model.addAttribute("error", "Unable to log in, please try again");
+		return "auth/login";
 	}
-	
+
+	@RequestMapping(value="/403", method=RequestMethod.GET)
+	public String fourOThree(ModelMap model, HttpServletRequest request){
+		model.addAttribute("title", "403 : Access Denied");
+		return "auth/403";
+	}
+
 }
 
 
