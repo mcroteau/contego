@@ -58,6 +58,9 @@
 						<th>Username</th>
 						<th>First Name</th>
 						<th>Last Name</th>
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+							<th>Edit</th>
+						</sec:authorize>
 					</tr>
 				</thead>
 				<tbody>
@@ -67,6 +70,9 @@
 							<td>${user.username}</td>
 							<td>${user.firstName}</td>
 							<td>${user.lastName}</td>
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+								<td><a href="/contego/app/user/edit/1">Edit</a></td>
+							</sec:authorize>
 						</tr>									
 					</c:forEach>
 				</tbody>

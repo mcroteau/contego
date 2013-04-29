@@ -66,7 +66,20 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(value="/show/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/{id}/edit", method=RequestMethod.GET)
+	public String show(ModelMap model,
+					   HttpServletRequest request, 
+					   @PathVariable String id){
+		
+		User user = userDao.findById(Integer.parseInt(id));
+		model.addAttribute("title", "Show User : " + id);
+		model.addAttribute("user", user);
+		
+		return "user/edit";
+	}	
+	
+
+	@RequestMapping(value="/{id}/show", method=RequestMethod.GET)
 	public String show(ModelMap model,
 					   HttpServletRequest request, 
 					   @PathVariable String id){
@@ -76,8 +89,7 @@ public class UserController {
 		model.addAttribute("user", user);
 		
 		return "user/show";
-	}	
-
+	}
 
 
 	@RequestMapping(value="/list", method=RequestMethod.GET)

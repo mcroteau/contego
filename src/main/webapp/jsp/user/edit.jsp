@@ -14,7 +14,7 @@
 	<div class="row" id="form">
 		<div class="span12">
 			
-			<form  action="/contego/app/user/save" method="post" class="form-horizontal"  >
+			<form  action="/contego/app/user/update" method="put" class="form-horizontal"  >
 				
 				<div class="control-group">
 					<label class="control-label">Full Name</label>
@@ -29,6 +29,13 @@
 						<input type="email" name="email" value="" placeholder="Email" id="email">	
 					</div>
 				</div>				
+				
+				<div class="control-group">
+					<label class="control-label">Email</label>
+					<div class="controls">
+						<input type="email" name="email" value="" placeholder="Email" id="email">	
+					</div>
+				</div>
 				
 				<div class="control-group">
 					<label class="control-label">Username</label>

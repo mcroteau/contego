@@ -38,3 +38,5 @@ isAuthenticated: return true or false whether the use is authenticated or not
 http://www.java-forums.org/blogs/spring-framework/534-using-spel-spring-security.html
 
 https://code.google.com/p/spring3-security-mvc-integration-tutorial/downloads/list
+
+http://blog.solidcraft.eu/2011/03/spring-security-by-example-securing.html
